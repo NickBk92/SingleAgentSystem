@@ -40,4 +40,9 @@ java -jar ../server.jar -l ../levels/SAD1.lvl -c "py searchclient/searchclient.p
 
 java -jar ../server.jar -l ../levels/SAD2.lvl -c "py searchclient/searchclient.py -dfs --max-memory 8192" -g 150 -t 300
 
+java -jar ../server.jar -l ../levels/friendofDFS.lvl -c "py searchclient/searchclient.py -bfs --max-memory 8192" -g 150 -t 300
+
+
+
+
 
