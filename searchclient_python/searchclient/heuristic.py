@@ -7,7 +7,23 @@ class Heuristic(metaclass=ABCMeta):
         pass
     
     def h(self, state: 'State') -> 'int':
-        raise NotImplementedError
+        box_loc=[]
+        goal_loc=[]
+        for row in range(len(state.boxes)):
+            for col in range(len(state.boxes[row])):
+                if state.boxes[row][col]:
+                    box_loc.append((state.boxes[row][col],row,col))
+                if state.goals[row][col]:
+                    goal_loc.append((state.goals[row][col],row,col))
+        h=0
+        for box in box_loc:
+            for goal in goal_loc:
+                if box[0].lower()==goal[0]:
+                    fromAgentToBox = abs(state.agent_row - box[1]) + abs(state.agent_col - box[2])
+                    h+= abs(box[1]-goal[1]) + abs(box[2]-goal[2])
+                    h+=fromAgentToBox
+ 
+        return h
     
     @abstractmethod
     def f(self, state: 'State') -> 'int': pass

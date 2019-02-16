@@ -5,8 +5,6 @@ from action import ALL_ACTIONS, ActionType
 
 class State:
     _RNG = random.Random(1)
-    MAX_ROW = 70
-    MAX_COL = 70
     goals = []
     walls = []
     
@@ -128,6 +126,10 @@ class State:
             state = state.parent
         plan.reverse()
         return plan
+
+    def __lt__(self,other):
+        return True
+
     
     def __hash__(self):
         if self._hash is None:
@@ -153,9 +155,9 @@ class State:
     
     def __repr__(self):
         lines = []
-        for row in range(State.MAX_ROW):
+        for row in range(len(State.goals)):
             line = []
-            for col in range(State.MAX_COL):
+            for col in range(len(State.goals[row])):
                 if self.boxes[row][col] is not None: line.append(self.boxes[row][col])
                 # elif self.goals[row][col] is not None: line.append(self.goals[row][col])
                 # elif self.walls[row][col] is not None: line.append('+')

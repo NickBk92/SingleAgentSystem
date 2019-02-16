@@ -51,9 +51,6 @@ class SearchClient:
                         sys.exit(1)
                 row += 1
                 line = server_messages.readline().rstrip()
-            # for i in range(len(State.walls)):
-            #     for j in range(len(State.walls[i])):
-            #         print(State.walls[i][j], " ",file=sys.stderr, flush = True)
 
         except Exception as ex:
             print('Error parsing level: {}.'.format(repr(ex)), file=sys.stderr, flush=True)
