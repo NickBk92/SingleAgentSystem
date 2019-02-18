@@ -16,12 +16,15 @@ class Heuristic(metaclass=ABCMeta):
                 if state.goals[row][col]:
                     goal_loc.append((state.goals[row][col],row,col))
         h=0
+        
         for box in box_loc:
+            hPossibleValues = []
             for goal in goal_loc:
                 if box[0].lower()==goal[0]:
                     fromAgentToBox = abs(state.agent_row - box[1]) + abs(state.agent_col - box[2])
-                    h+= abs(box[1]-goal[1]) + abs(box[2]-goal[2])
-                    h+=fromAgentToBox
+                    hValue= abs(box[1]-goal[1]) + abs(box[2]-goal[2])
+                    hPossibleValues.append([hValue,0])
+            h += sum(min(hPossibleValues))
  
         return h
     
