@@ -51,6 +51,9 @@ class SearchClient:
                         sys.exit(1)
                 row += 1
                 line = server_messages.readline().rstrip()
+            # for i in range(len(State.walls)):
+            #     for j in range(len(State.walls[i])):
+            #         print(State.walls[i][j], " ",file=sys.stderr, flush = True)
 
         except Exception as ex:
             print('Error parsing level: {}.'.format(repr(ex)), file=sys.stderr, flush=True)
@@ -101,7 +104,7 @@ def main(strategy_str: 'str'):
     if not strategy_str:
         strategy_str = 'bfs'
         print('Defaulting to BFS search. Use arguments -bfs, -dfs, -astar, -wastar, or -greedy to set the search strategy.', file=sys.stderr, flush=True)
-    
+        
     strategy = None
     if strategy_str == 'bfs':
         strategy = StrategyBFS()
